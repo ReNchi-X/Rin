@@ -4,7 +4,7 @@ import { connect } from "cloudflare:sockets";
 
 // Variables
 const rootDomain = "necrozero.dpdns.org"; // Ganti dengan domain utama kalian
-const serviceName = "Rin"; // Ganti dengan nama workers kalian
+const serviceName = "rin"; // Ganti dengan nama workers kalian
 const apiKey = "e2840cbacff5c1990ffd7b78011d39bdb40e6"; // Ganti dengan Global API key kalian (https://dash.cloudflare.com/profile/api-tokens)
 const apiEmail = "Sika333a@sika3.com"; // Ganti dengan email yang kalian gunakan
 const accountID = "9a879f2cd8e1aef53dce5a8aa033109e"; // Ganti dengan Account ID kalian (https://dash.cloudflare.com -> Klik domain yang kalian gunakan)
