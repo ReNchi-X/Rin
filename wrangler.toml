@@ -8,3 +8,22 @@ enabled = true
 
 [observability.logs]
 enabled = true
+
+workers_dev = true
+usage_model = "bundled"
+
+# Env untuk testing
+[env.dev]
+name = "rin-dev"
+workers_dev = true
+
+# Env utama (production) ke domain milikmu
+[env.prod]
+name = "rin-prod"
+zone_id = "e276b3065921be196356cf7a6150180a"
+route = "https://necrozero.dpdns.org/*"
+
+# Opsional, environment lain
+[env.one]
+name = "rin-one"
+workers_dev = true
