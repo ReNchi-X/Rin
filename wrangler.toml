@@ -10,8 +10,8 @@ routes = [
   { pattern = "df.game.naver.com.rin.necrozero.dpdns.org", custom_domain = true },
   { pattern = "graph.instagram.com.rin.necrozero.dpdns.org", custom_domain = true },
   { pattern = "zaintest.vuclip.com.rin.necrozero.dpdns.org", custom_domain = true },
-  { pattern = "support.zoom.us.necrozero.rin.dpdns.org", custom_domain = true },  
-  { pattern = "cache.netflix.com.necrozero.rin.dpdns.org", custom_domain = true },
+  { pattern = "support.zoom.us.rin.necrozero.dpdns.org", custom_domain = true },  
+  { pattern = "cache.netflix.com.rin.necrozero.dpdns.org", custom_domain = true },
 ]
 [unsafe.metadata.observability]
 enabled = true
