@@ -3,12 +3,12 @@ import { connect } from "cloudflare:sockets";
 // import { Buffer } from "node:buffer";
 
 // Variables
-const rootDomain = "necrozero.dpdns.org"; // Ganti dengan domain utama kalian
-const serviceName = "rin"; // Ganti dengan nama workers kalian
-const apiKey = "e2840cbacff5c1990ffd7b78011d39bdb40e6"; // Ganti dengan Global API key kalian (https://dash.cloudflare.com/profile/api-tokens)
-const apiEmail = "Sika333a@sika3.com"; // Ganti dengan email yang kalian gunakan
-const accountID = "9a879f2cd8e1aef53dce5a8aa033109e"; // Ganti dengan Account ID kalian (https://dash.cloudflare.com -> Klik domain yang kalian gunakan)
-const zoneID = "e276b3065921be196356cf7a6150180a"; // Ganti dengan Zone ID kalian (https://dash.cloudflare.com -> Klik domain yang kalian gunakan)
+const rootDomain = "rimurux.dpdns.org"; // Ganti dengan domain utama kalian
+const serviceName = "nautica-prod"; // Ganti dengan nama workers kalian
+const apiKey = "054186155762e4c0e6f83a86708a278f822ed"; // Ganti dengan Global API key kalian (https://dash.cloudflare.com/profile/api-tokens)
+const apiEmail = "vps1@ichigo.me"; // Ganti dengan email yang kalian gunakan
+const accountID = "636f441fa74489f64f7bed9546dcdbbb"; // Ganti dengan Account ID kalian (https://dash.cloudflare.com -> Klik domain yang kalian gunakan)
+const zoneID = "17a175a851b66e5e7f6c411f5a29c17f"; // Ganti dengan Zone ID kalian (https://dash.cloudflare.com -> Klik domain yang kalian gunakan)
 let isApiReady = false;
 let proxyIP = "";
 let cachedProxyList = [];
@@ -18,7 +18,7 @@ const APP_DOMAIN = `${serviceName}.${rootDomain}`;
 const PORTS = [443, 80];
 const PROTOCOLS = [reverse("najort"), reverse("sselv"), reverse("ss")];
 const KV_PROXY_URL = "https://raw.githubusercontent.com/FoolVPN-ID/Nautica/refs/heads/main/kvProxyList.json";
-const PROXY_BANK_URL = "https://raw.githubusercontent.com/ReNchi-X/Hinata/refs/heads/main/Data/IPProxy19-6.txt";
+const PROXY_BANK_URL = "https://raw.githubusercontent.com/FoolVPN-ID/Nautica/refs/heads/main/proxyList.txt";
 const DNS_SERVER_ADDRESS = "8.8.8.8";
 const DNS_SERVER_PORT = 53;
 const PROXY_HEALTH_CHECK_API = "https://id1.foolvpn.me/api/v1/check";
@@ -118,7 +118,7 @@ function getAllConfig(request, hostName, proxyList, page = 0) {
 
     // Build HTML
     const document = new Document(request);
-    document.setTitle("Welcome to <span class='text-blue-500 font-semibold'>ReNchi-X</span>");
+    document.setTitle("Welcome to <span class='text-blue-500 font-semibold'>Nautica</span>");
     document.addInfo(`Total: ${proxyList.length}`);
     document.addInfo(`Page: ${page}/${Math.floor(proxyList.length / PROXY_PER_PAGE)}`);
 
@@ -853,39 +853,6 @@ function parseNajortHeader(buffer) {
   };
 }
 
-// function parseSsemvHeader(buffer) {
-//   const date = new Date(new Date().toLocaleString("en", { timeZone: "Asia/Jakarta" }));
-//   console.log(`Date: ${date}`);
-//   console.log(`First 16 bytes: ${arrayBufferToHex(buffer.slice(0, 17))}`);
-//   console.log(`Remaining bytes: ${arrayBufferToHex(buffer.slice(17))}`);
-
-//   // ===== KEY GENERATION =====
-//   const userId = "3b670322-6ac1-41ec-9ff3-714245d41bf7";
-//   const uuidConst = "c48619fe-8f02-49e0-b9e9-edf763e17e21";
-
-//   // Step 1: Generate AES key
-//   const key = createHash("md5")
-//     .update(userId + uuidConst)
-//     .digest();
-//   console.log(`KEY: ${key}`);
-
-//   // Step 2: Generate Timestamp (current Unix time)
-//   const timestamp = Math.floor(date.getTime() / 1000); // current timestamp in seconds
-
-//   // Step 3: Generate IV from Timestamp
-//   const x = Buffer.alloc(8);
-//   x.writeBigUInt64BE(BigInt(timestamp)); // 8-byte timestamp (Big Endian)
-//   const iv_source = Buffer.concat([x, x, x, x]);
-//   const iv = createHash("md5").update(iv_source).digest();
-//   console.log(`IV: ${iv}`);
-
-//   // Step 4: Decrypt using AES-128-CFB
-//   const decipher = createDecipheriv("aes-128-cfb", key, iv);
-//   const decrypted = Buffer.concat([decipher.update(buffer.slice(17)), decipher.final()]);
-
-//   console.log(`Decrypted Header: ${decrypted.toString("hex")}`);
-// }
-
 async function remoteSocketToWS(remoteSocket, webSocket, responseHeader, retry, log) {
   let header = responseHeader;
   let hasIncomingData = false;
@@ -1085,30 +1052,71 @@ let baseHTML = `
     <style>
       /* For Webkit-based browsers (Chrome, Safari and Opera) */
       .scrollbar-hide::-webkit-scrollbar {
-          display: none;
+        display: none;
       }
-
       /* For IE, Edge and Firefox */
       .scrollbar-hide {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+      /* Glassmorphism Effect */
+      .glass-effect {
+        background-color: rgba(42, 42, 47, 0.6); /* Secondary-dark with transparency */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px); /* For Safari */
+        border: 1px solid rgba(0, 224, 183, 0.3); /* Accent-cyan with transparency */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .glass-effect-light {
+        background-color: rgba(255, 255, 255, 0.1); /* Lighter transparency for some elements */
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(0, 224, 183, 0.2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
       }
     </style>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"
+    ></script>
     <script>
       tailwind.config = {
         darkMode: 'selector',
-      }
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Poppins', 'sans-serif'],
+            },
+            colors: {
+              'primary-dark': '#1c1c20',
+              'secondary-dark': '#2a2a2f',
+              'text-light': '#f0f0f5',
+              'accent-cyan': '#00e0b7',
+              'accent-blue': '#4a90e2',
+            },
+          },
+        },
+      };
     </script>
   </head>
-  <body class="bg-white dark:bg-neutral-800 bg-fixed">
-    <!-- Notification -->
+  <body class="bg-primary-dark font-sans text-text-light bg-fixed relative">
+    <div
+      class="fixed inset-0 z-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 opacity-75"
+    ></div>
+
     <div
       id="notification-badge"
-      class="fixed z-50 opacity-0 transition-opacity ease-in-out duration-300 mt-9 mr-6 right-0 p-3 max-w-sm bg-white rounded-xl border border-2 border-neutral-800 flex items-center gap-x-4"
+      class="fixed z-50 opacity-0 transition-opacity ease-in-out duration-300 mt-9 mr-6 right-0 p-4 max-w-sm rounded-xl flex items-center gap-x-4 shadow-lg glass-effect"
     >
       <div class="shrink-0">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#171717" class="size-6">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-6 text-accent-cyan"
+        >
           <path
             d="M5.85 3.5a.75.75 0 0 0-1.117-1 9.719 9.719 0 0 0-2.348 4.876.75.75 0 0 0 1.479.248A8.219 8.219 0 0 1 5.85 3.5ZM19.267 2.5a.75.75 0 1 0-1.118 1 8.22 8.22 0 0 1 1.987 4.124.75.75 0 0 0 1.48-.248A9.72 9.72 0 0 0 19.266 2.5Z"
           />
@@ -1120,45 +1128,47 @@ let baseHTML = `
         </svg>
       </div>
       <div>
-        <div class="text-md font-bold text-blue-500">Berhasil!</div>
-        <p class="text-sm text-neutral-800">Akun berhasil disalin</p>
+        <div class="text-md font-bold text-accent-cyan">Berhasil!</div>
+        <p class="text-sm text-gray-300">Akun berhasil disalin</p>
       </div>
     </div>
-    <!-- Select Country -->
-    <div>
+
+    <div
+      class="h-full fixed top-0 w-16 z-20 overflow-y-scroll scrollbar-hide shadow-lg glass-effect"
+    >
+      <div class="text-2xl flex flex-col items-center h-full gap-2 py-4">
+        PLACEHOLDER_BENDERA_NEGARA
+      </div>
+    </div>
+
+    <div class="ml-16 flex flex-col items-center min-h-screen relative z-10 p-4">
       <div
-        class="h-full fixed top-0 w-14 bg-white dark:bg-neutral-800 border-r-2 border-neutral-800 dark:border-white z-20 overflow-y-scroll scrollbar-hide"
+        class="rounded-xl p-4 text-right w-full mb-6 shadow-lg glass-effect"
       >
-        <div class="text-2xl flex flex-col items-center h-full gap-2">
-          PLACEHOLDER_BENDERA_NEGARA
-        </div>
-      </div>
-    </div>
-    <!-- Main -->
-    <div id="container-header">
-      <div id="container-info" class="bg-amber-400 border-2 border-neutral-800 text-right px-5">
-        <div class="flex justify-end gap-3 text-sm">
+        <div class="flex justify-end gap-3 text-sm flex-wrap text-gray-300">
           <p id="container-info-ip">IP: 127.0.0.1</p>
-          <p id="container-info-country">Country: Indonesia</p>
+          <p id="container-info-country">Country: Singapore</p>
           <p id="container-info-isp">ISP: Localhost</p>
         </div>
       </div>
-    </div>
-    <div class="container">
+
       <div
         id="container-title"
-        class="sticky bg-white dark:bg-neutral-800 border-b-2 border-neutral-800 dark:border-white z-10 py-6 w-screen"
+        class="sticky top-0 py-6 w-full max-w-7xl z-10 text-center glass-effect-light rounded-xl mb-6"
       >
-        <h1 class="text-xl text-center text-neutral-800 dark:text-white">
+        <h1 class="text-2xl font-semibold text-text-light">
           PLACEHOLDER_JUDUL
         </h1>
       </div>
-      <div class="flex gap-6 pt-10 w-screen justify-center">
+
+      <div class="flex flex-col md:flex-row gap-6 pt-10 w-full max-w-7xl justify-center">
         PLACEHOLDER_PROXY_GROUP
       </div>
 
-      <!-- Pagination -->
-      <nav id="container-pagination" class="w-screen mt-8 sticky bottom-0 right-0 left-0 transition -translate-y-6 z-20">
+      <nav
+        id="container-pagination"
+        class="w-full max-w-7xl mt-8 sticky bottom-0 z-20 transition-transform -translate-y-6"
+      >
         <ul class="flex justify-center space-x-4">
           PLACEHOLDER_PAGE_BUTTON
         </ul>
@@ -1166,104 +1176,128 @@ let baseHTML = `
     </div>
 
     <div id="container-window" class="hidden">
-      <!-- Windows -->
-      <!-- Informations -->
-      <div class="fixed z-20 top-0 w-full h-full bg-white dark:bg-neutral-800">
-        <p id="container-window-info" class="text-center w-full h-full top-1/4 absolute dark:text-white"></p>
+      <div
+        class="fixed inset-0 z-20 flex items-center justify-center p-4"
+        style="background-color: rgba(28, 28, 32, 0.8);"
+      >
+        <p
+          id="container-window-info"
+          class="text-xl text-center text-text-light animate-pulse"
+        ></p>
       </div>
-      <!-- Output Format -->
-      <div id="output-window" class="fixed z-20 top-0 right-0 w-full h-full flex justify-center items-center hidden">
-        <div class="w-[75%] h-[30%] flex flex-col gap-1 p-1 text-center rounded-md">
-          <div class="basis-1/6 w-full h-full rounded-md">
-            <div class="flex w-full h-full gap-1 justify-between">
+
+      <div
+        id="output-window"
+        class="fixed inset-0 z-20 flex justify-center items-center p-4 hidden"
+        style="background-color: rgba(28, 28, 32, 0.8);"
+      >
+        <div
+          class="w-full md:w-[75%] lg:w-[50%] flex flex-col gap-4 p-6 rounded-xl glass-effect"
+        >
+          <div class="flex flex-col gap-2">
+            <div class="flex flex-wrap gap-2 justify-center">
               <button
                 onclick="copyToClipboardAsTarget('clash')"
-                class="basis-1/2 p-2 rounded-full bg-amber-400 flex justify-center items-center"
+                class="flex-1 min-w-[48%] p-3 rounded-full bg-accent-blue hover:bg-opacity-80 text-white font-medium transition-colors transform hover:scale-105"
               >
                 Clash
               </button>
               <button
                 onclick="copyToClipboardAsTarget('sfa')"
-                class="basis-1/2 p-2 rounded-full bg-amber-400 flex justify-center items-center"
+                class="flex-1 min-w-[48%] p-3 rounded-full bg-accent-blue hover:bg-opacity-80 text-white font-medium transition-colors transform hover:scale-105"
               >
                 SFA
               </button>
+            </div>
+            <div class="flex flex-wrap gap-2 justify-center">
               <button
                 onclick="copyToClipboardAsTarget('bfr')"
-                class="basis-1/2 p-2 rounded-full bg-amber-400 flex justify-center items-center"
+                class="flex-1 min-w-[48%] p-3 rounded-full bg-accent-blue hover:bg-opacity-80 text-white font-medium transition-colors transform hover:scale-105"
               >
                 BFR
               </button>
-            </div>
-          </div>
-          <div class="basis-1/6 w-full h-full rounded-md">
-            <div class="flex w-full h-full gap-1 justify-between">
               <button
                 onclick="copyToClipboardAsTarget('v2ray')"
-                class="basis-1/2 p-2 rounded-full bg-amber-400 flex justify-center items-center"
+                class="flex-1 min-w-[48%] p-3 rounded-full bg-accent-blue hover:bg-opacity-80 text-white font-medium transition-colors transform hover:scale-105"
               >
                 V2Ray/Xray
               </button>
-              <button
-                onclick="copyToClipboardAsRaw()"
-                class="basis-1/2 p-2 rounded-full bg-amber-400 flex justify-center items-center"
-              >
-                Raw
-              </button>
             </div>
           </div>
-          <div class="basis-1/6 w-full h-full rounded-md">
-            <div class="flex w-full h-full gap-1 justify-center">
-              <button
-                onclick="toggleOutputWindow()"
-                class="basis-1/2 border-2 border-indigo-400 hover:bg-indigo-400 dark:text-white p-2 rounded-full flex justify-center items-center"
-              >
-                Close
-              </button>
-            </div>
-          </div>
+          <button
+            onclick="copyToClipboardAsRaw()"
+            class="w-full p-3 rounded-full bg-accent-cyan hover:bg-opacity-80 text-white font-medium transition-colors transform hover:scale-105"
+          >
+            Raw
+          </button>
+          <button
+            onclick="toggleOutputWindow()"
+            class="w-full p-3 rounded-full border-2 border-accent-blue text-accent-blue hover:bg-accent-blue hover:text-white font-medium transition-colors transform hover:scale-105"
+          >
+            Close
+          </button>
         </div>
       </div>
-      <!-- Wildcards -->
-      <div id="wildcards-window" class="fixed hidden z-20 top-0 right-0 w-full h-full flex justify-center items-center">
-        <div class="w-[75%] h-[30%] flex flex-col gap-1 p-1 text-center rounded-md">
-          <div class="basis-1/6 w-full h-full rounded-md">
-            <div class="flex w-full h-full gap-1 justify-between">
-              <input
-                id="new-domain-input"
-                type="text"
-                placeholder="Input wildcard"
-                class="basis-11/12 w-full h-full px-6 rounded-md focus:outline-0"
-              />
-              <button
-                onclick="registerDomain()"
-                class="p-2 rounded-full bg-amber-400 flex justify-center items-center"
+
+      <div
+        id="wildcards-window"
+        class="fixed hidden z-20 top-0 right-0 w-full h-full flex justify-center items-center"
+        style="background-color: rgba(28, 28, 32, 0.8);"
+      >
+        <div
+          class="w-full md:w-[75%] lg:w-[50%] flex flex-col gap-4 p-6 rounded-xl glass-effect"
+        >
+          <div class="flex gap-2">
+            <input
+              id="new-domain-input"
+              type="text"
+              placeholder="Input wildcard"
+              class="flex-1 px-4 py-3 rounded-md focus:outline-none bg-primary-dark text-text-light placeholder-gray-500 border-2 border-transparent focus:border-accent-blue transition-colors"
+            />
+            <button
+              onclick="registerDomain()"
+              class="p-3 rounded-full bg-accent-blue hover:bg-opacity-80 text-white transition-colors transform hover:scale-105"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="size-6"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </button>
-            </div>
+                <path
+                  fill-rule="evenodd"
+                  d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
           </div>
-          <div class="basis-5/6 w-full h-full rounded-md">
-            <div
-              id="container-domains"
-              class="w-full h-full rounded-md flex flex-col gap-1 overflow-scroll scrollbar-hide"
-            ></div>
-          </div>
+          <div
+            id="container-domains"
+            class="flex-1 w-full rounded-md flex flex-col gap-2 overflow-y-scroll scrollbar-hide p-2 glass-effect-light"
+          ></div>
+          <button
+            onclick="toggleWildcardsWindow()"
+            class="w-full p-3 rounded-full border-2 border-accent-blue text-accent-blue hover:bg-accent-blue hover:text-white font-medium transition-colors transform hover:scale-105"
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>
 
     <footer>
-      <div class="fixed bottom-3 right-3 flex flex-col gap-1 z-50">
+      <div class="fixed bottom-4 right-4 flex flex-col gap-3 z-50">
         <a href="${DONATE_LINK}" target="_blank">
-          <button class="bg-green-500 rounded-full border-2 border-neutral-800 p-1 block">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+          <button
+            class="transition-colors rounded-full p-3 block text-white shadow-lg transform hover:scale-105 bg-accent-blue hover:bg-opacity-80"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6"
+            >
               <path
                 d="M10.464 8.746c.227-.18.497-.311.786-.394v2.795a2.252 2.252 0 0 1-.786-.393c-.394-.313-.546-.681-.546-1.004 0-.323.152-.691.546-1.004ZM12.75 15.662v-2.824c.347.085.664.228.921.421.427.32.579.686.579.991 0 .305-.152.671-.579.991a2.534 2.534 0 0 1-.921.42Z"
               />
@@ -1275,14 +1309,17 @@ let baseHTML = `
             </svg>
           </button>
         </a>
-        <button onclick="toggleWildcardsWindow()" class="bg-indigo-400 rounded-full border-2 border-neutral-800 p-1 PLACEHOLDER_API_READY">
+        <button
+          onclick="toggleWildcardsWindow()"
+          class="transition-colors rounded-full p-3 text-white shadow-lg PLACEHOLDER_API_READY transform hover:scale-105 bg-accent-blue hover:bg-opacity-80"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="size-6"
+            class="size-6 text-text-light"
           >
             <path
               stroke-linecap="round"
@@ -1291,14 +1328,17 @@ let baseHTML = `
             />
           </svg>
         </button>
-        <button onclick="toggleDarkMode()" class="bg-amber-400 rounded-full border-2 border-neutral-800 p-1">
+        <button
+          onclick="toggleDarkMode()"
+          class="transition-colors rounded-full p-3 text-white shadow-lg transform hover:scale-105 bg-accent-cyan hover:bg-opacity-80"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="size-6"
+            class="size-6 text-text-light"
           >
             <path
               stroke-linecap="round"
@@ -1505,7 +1545,6 @@ let baseHTML = `
 
       function checkRegion() {
         for (let i = 0; ; i++) {
-          console.log("Halo " + i)
           const containerRegionCheck = document.getElementById("container-region-check-" + i);
           const configSample = document.getElementById("config-sample-" + i).value.replaceAll(" ", "");
           if (containerRegionCheck == undefined) break;
@@ -1541,7 +1580,6 @@ let baseHTML = `
         checkGeoip();
         checkProxy();
         // checkRegion();
-
         const observer = lozad(".lozad", {
           load: function (el) {
             el.classList.remove("scale-95");
@@ -1560,8 +1598,7 @@ let baseHTML = `
         }
       };
     </script>
-    </body>
-
+  </body>
 </html>
 `;
 
@@ -1575,7 +1612,7 @@ class Document {
   }
 
   setTitle(title) {
-    this.html = this.html.replaceAll("PLACEHOLDER_JUDUL", title);
+    this.html = this.html.replaceAll("PLACEHOLDER_JUDUL", title.replace("text-blue-500", "text-indigo-500"));
   }
 
   addInfo(text) {
@@ -1597,22 +1634,22 @@ class Document {
       const proxyData = this.proxies[i];
 
       // Assign proxies
-      proxyGroupElement += `<div class="lozad scale-95 mb-2 bg-white dark:bg-neutral-800 transition-transform duration-200 rounded-lg p-4 w-60 border-2 border-neutral-800">`;
-      proxyGroupElement += `  <div id="countryFlag" class="absolute -translate-y-9 -translate-x-2 border-2 border-neutral-800 rounded-full overflow-hidden"><img width="32" src="https://hatscripts.github.io/circle-flags/flags/${proxyData.country.toLowerCase()}.svg" /></div>`;
-      proxyGroupElement += `  <div>`;
-      proxyGroupElement += `    <div id="ping-${i}" class="animate-pulse text-xs font-semibold dark:text-white">Idle ${proxyData.proxyIP}:${proxyData.proxyPort}</div>`;
+      proxyGroupElement += `<div class="lozad scale-95 mb-4 bg-white dark:bg-slate-800 transition-all duration-300 rounded-lg p-6 flex flex-col shadow-md hover:shadow-lg border border-slate-200 dark:border-slate-700 hover:scale-105">`;
+      proxyGroupElement += `  <div id="countryFlag" class="absolute -translate-y-11 -translate-x-2 border-4 border-white dark:border-slate-800 rounded-full overflow-hidden"><img width="48" src="https://hatscripts.github.io/circle-flags/flags/${proxyData.country.toLowerCase()}.svg" /></div>`;
+      proxyGroupElement += `  <div class="flex-grow">`;
+      proxyGroupElement += `    <div id="ping-${i}" class="animate-pulse text-xs font-semibold text-slate-500 dark:text-slate-400 text-right">Idle ${proxyData.proxyIP}:${proxyData.proxyPort}</div>`;
       proxyGroupElement += `  </div>`;
-      proxyGroupElement += `  <div class="rounded py-1 px-2 bg-amber-400 dark:bg-neutral-800 dark:border-2 dark:border-amber-400">`;
-      proxyGroupElement += `    <h5 class="font-bold text-md text-neutral-900 dark:text-white mb-1 overflow-x-scroll scrollbar-hide text-nowrap">${proxyData.org}</h5>`;
-      proxyGroupElement += `    <div class="text-neutral-900 dark:text-white text-sm">`;
+      proxyGroupElement += `  <div class="rounded-lg py-4 px-4 bg-slate-50 dark:bg-slate-700/50 flex-grow mt-4">`;
+      proxyGroupElement += `    <h5 class="font-bold text-lg text-slate-800 dark:text-slate-100 mb-1 overflow-x-scroll scrollbar-hide text-nowrap">${proxyData.org}</h5>`;
+      proxyGroupElement += `    <div class="text-slate-600 dark:text-slate-300 text-sm">`;
       proxyGroupElement += `      <p>IP: ${proxyData.proxyIP}</p>`;
       proxyGroupElement += `      <p>Port: ${proxyData.proxyPort}</p>`;
       proxyGroupElement += `      <div id="container-region-check-${i}">`;
       proxyGroupElement += `        <input id="config-sample-${i}" class="hidden" type="text" value="${proxyData.list[0]}">`;
       proxyGroupElement += `      </div>`;
-      proxyGroupElement += `   </div>`;
+      proxyGroupElement += `    </div>`;
       proxyGroupElement += `  </div>`;
-      proxyGroupElement += `  <div class="flex flex-col gap-2 mt-3 text-sm">`;
+      proxyGroupElement += `  <div class="flex flex-col gap-2 mt-4 text-sm">`;
       for (let x = 0; x < proxyData.list.length; x++) {
         const indexName = [
           `${reverse("NAJORT")} TLS`,
@@ -1628,7 +1665,7 @@ class Document {
           proxyGroupElement += `<div class="flex gap-2 justify-around w-full">`;
         }
 
-        proxyGroupElement += `<button class="bg-blue-500 dark:bg-neutral-800 dark:border-2 dark:border-blue-500 rounded p-1 w-full text-white" onclick="copyToClipboard('${proxy}')">${indexName[x]}</button>`;
+        proxyGroupElement += `<button class="bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-500 dark:hover:bg-indigo-400 rounded-md p-2 w-full text-white font-semibold transition-colors duration-200" onclick="copyToClipboard('${proxy}')">${indexName[x]}</button>`;
 
         if (x % 2 == 1) {
           proxyGroupElement += `</div>`;
@@ -1662,7 +1699,7 @@ class Document {
   addPageButton(text, link, isDisabled) {
     const pageButton = `<li><button ${
       isDisabled ? "disabled" : ""
-    } class="px-3 py-1 bg-amber-400 border-2 border-neutral-800 rounded" onclick=navigateTo('${link}')>${text}</button></li>`;
+    } class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 disabled:bg-slate-400 dark:disabled:bg-slate-600 text-white font-semibold border-2 border-neutral-800 rounded-lg transition-colors" onclick=navigateTo('${link}')>${text}</button></li>`;
 
     this.html = this.html.replaceAll("PLACEHOLDER_PAGE_BUTTON", `${pageButton}\nPLACEHOLDER_PAGE_BUTTON`);
   }
