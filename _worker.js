@@ -4,7 +4,7 @@ import { connect } from "cloudflare:sockets";
 
 // Variables
 const rootDomain = "rimurux.dpdns.org"; // Ganti dengan domain utama kalian
-const serviceName = "rin-prod"; // Ganti dengan nama workers kalian
+const serviceName = "rin"; // Ganti dengan nama workers kalian
 const apiKey = "054186155762e4c0e6f83a86708a278f822ed"; // Ganti dengan Global API key kalian (https://dash.cloudflare.com/profile/api-tokens)
 const apiEmail = "vps1@ichigo.me"; // Ganti dengan email yang kalian gunakan
 const accountID = "636f441fa74489f64f7bed9546dcdbbb"; // Ganti dengan Account ID kalian (https://dash.cloudflare.com -> Klik domain yang kalian gunakan)
