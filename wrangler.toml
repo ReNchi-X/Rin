@@ -30,8 +30,8 @@ workers_dev = true
 # Env utama (production) ke domain milikmu
 [env.prod]
 name = "rin-prod"
-zone_id = "e276b3065921be196356cf7a6150180a"
-route = "https://necrozero.dpdns.org/*"
+zone_id = "17a175a851b66e5e7f6c411f5a29c17f"
+route = "https://rimurux.dpdns.org/*"
 
 # Opsional, environment lain
 [env.one]
