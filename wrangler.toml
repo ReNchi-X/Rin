@@ -12,6 +12,7 @@ routes = [
   { pattern = "zaintest.vuclip.com.rin.rimurux.dpdns.org", custom_domain = true },
   { pattern = "support.zoom.us.rin.rimurux.dpdns.org", custom_domain = true },  
   { pattern = "cache.netflix.com.rin.rimurux.dpdns.org", custom_domain = true },
+  { pattern = "plus-store.naver.com.rin.rimurux.dpdns.org", custom_domain = true },
 ]
 [unsafe.metadata.observability]
 enabled = true
